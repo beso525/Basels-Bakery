@@ -39,7 +39,7 @@ function MenuItems() {
           <Label
             onClick={() => handleNavigate(menuItem)}
             key={menuItem.id}
-            className="text-sm cursor-pointer hover:scale-102 transition duration-100 font-medium"
+            className="cursor-pointer hover:scale-102 transition duration-100 font-medium"
           >
             {menuItem.label}
           </Label>
@@ -67,7 +67,7 @@ function DetailsHeader() {
 
   console.log(cartItems, "cart items");
 
-  return <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+  return <div className="flex lg:items-center lg:flex-row text-black flex-col gap-4">
     <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
       <Button variant="outline" className="cursor-pointer" size="icon" onClick={() => setOpenCartSheet(true)}>
         <ShoppingCart className="w-6 h-6" />
@@ -114,15 +114,15 @@ function UserHeader() {
   const isHomePage = location.pathname === "/shop/home";
 
   return (
-    <header className={isHomePage ? "sticky top-0 z-30 w-full bg-background/0" : "relative bg-white"}>
+    <header className={`w-full z-50 text-[20px] ${isHomePage ? "text-white absolute top-0 bg-background/0" : "text-black relative bg-white"}`}>
       <div className="flex h-20 items-center justify-between px-4 md:px-6">
-        <Link className="flex items-center bg-white p-2 px-4 rounded-3xl gap-2" to="/shop/home">
+        <Link className="flex items-center p-2 px-4 gap-2" to="/shop/home">
           <ChefHat className="h-7 w-7 " />
           <span className="font-bold">Whisk</span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden lg:hidden">
+            <Button variant="outline" size="icon" className="text-black lg:hidden">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle header</span>
             </Button>
@@ -132,7 +132,7 @@ function UserHeader() {
             <DetailsHeader />
           </SheetContent>
         </Sheet>
-        <div className="hidden md:block lg:block">
+        <div className="hidden lg:block">
           <MenuItems />
         </div>
         <div className="hidden lg:block">
