@@ -1,0 +1,1 @@
+Slideshow images were found on unsplash, first slideshow image titled slideshow1 was taken by Andy Li, second image is by Chinh Le Duc
