@@ -110,9 +110,11 @@ function DetailsHeader() {
 }
 
 function UserHeader() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/shop/home";
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-background/0">
+    <header className={isHomePage ? "sticky top-0 z-30 w-full bg-background/0" : "relative bg-white"}>
       <div className="flex h-20 items-center justify-between px-4 md:px-6">
         <Link className="flex items-center bg-white p-2 px-4 rounded-3xl gap-2" to="/shop/home">
           <ChefHat className="h-7 w-7 " />
