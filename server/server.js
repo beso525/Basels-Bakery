@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require('./routes/auth/auth-routes')
@@ -12,20 +13,19 @@ const shopAddressRouter = require('./routes/shop/address-routes')
 const shopOrderRouter = require('./routes/shop/order-routes')
 const shopSearchRouter = require('./routes/shop/search-routes')
 
+dotenv.config();
+const app = express();
 
 mongoose
-  .connect(
-    "mongodb+srv://baselalkhalifa_db_user:besolearningmongo2026@cluster0.xsbwqxt.mongodb.net/",
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("connected to db"))
   .catch((error) => console.log(error));
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: ["https://whiskbasel.netlify.app", "http://localhost:5173"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
