@@ -28,12 +28,15 @@ const addProduct = async (req, res) => {
       title, 
       description, 
       category, 
+      dietary,
+      unit,
       price, 
       salePrice, 
       totalStock
     } = req.body;
+
     const newProduct = new Product({
-      image, title, description, category, price, salePrice, totalStock
+      image, title, description, category, dietary, unit, price, salePrice, totalStock
     })
 
     await newProduct.save();
@@ -77,6 +80,8 @@ const editProduct = async (req, res) => {
       title, 
       description, 
       category, 
+      dietary,
+      unit,
       price, 
       salePrice, 
       totalStock
@@ -92,6 +97,8 @@ const editProduct = async (req, res) => {
     findProduct.title = title || findProduct.title;
     findProduct.description = description || findProduct.description;
     findProduct.category = category || findProduct.category;
+    findProduct.dietary = dietary !== undefined ? dietary : findProduct.dietary;
+    findProduct.unit = unit || findProduct.unit;
     findProduct.price = price === '' ? 0 : price || findProduct.price;
     findProduct.salePrice = salePrice === '' ? 0 : salePrice || findProduct.salePrice;
     findProduct.totalStock = totalStock || findProduct.totalStock;

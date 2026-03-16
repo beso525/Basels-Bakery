@@ -79,7 +79,10 @@ function UserOrders() {
                     </TableCell>
                   </TableRow>
                   </>
-                )) : null
+                )) :
+                <TableRow>
+                  <TableCell className="colspan-4">No orders yet!</TableCell>
+                </TableRow>
             }
 
           </TableBody>

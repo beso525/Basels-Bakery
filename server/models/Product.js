@@ -5,8 +5,17 @@ const ProductSchema = new mongoose.Schema({
   title: String,
   description: String,
   category: String,
+  dietary: [String],
+  unit: {
+    type: String,
+    default: "piece"
+  },
   price: Number,
   salePrice: Number,
+  isBestSeller: {
+    type: Boolean,
+    default: false
+  },
   totalStock: Number,
 }, {timestamps: true})
 

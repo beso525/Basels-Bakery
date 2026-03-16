@@ -7,7 +7,6 @@ function UserProductTile({ product, handleGetProductDetails, handleAddToCart }) 
 
   const handleBtnDisabled = product?.totalStock === 0;
 
-  console.log(product);
   return (
     <Card className="w-full max-w-sm mx-auto pt-0">
       <div onClick={() => handleGetProductDetails(product?._id)}>

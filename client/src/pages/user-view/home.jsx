@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import { addToCart, getCart } from '@/store/shop/carts-slice';
 import { toast } from 'sonner';
 import ProductDetailsDialog from '@/components/user-view/product-details';
-import UserHeader from '@/components/user-view/header';
 
 
 function UserHome() {
@@ -25,6 +24,9 @@ function UserHome() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const featuredList = productList.slice(11, 14);
+  const salesList = productList.filter(sale => sale.salePrice > 0).slice(0, 3);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -107,6 +109,49 @@ function UserHome() {
           <ChevronRightIcon className='w-4 h-4' />
         </Button>
       </div>
+      {/* features */}
+      <section className='p-12'>
+        <div className='container mx-auto px-4'>
+          <h2 className='text-3xl font-bold text-center mb-8'>
+            Features
+          </h2>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6'>
+            {
+              featuredList && featuredList.length > 0 ?
+                featuredList.map(prodItem => (
+                  <UserProductTile
+                    handleGetProductDetails={handleGetProductDetails}
+                    product={prodItem}
+                    handleAddToCart={handleAddToCart}
+                  />
+                ))
+                : null
+            }
+          </div>
+        </div>
+      </section>
+
+      {/* on sale */}
+      <section className='p-12'>
+        <div className='container mx-auto px-4'>
+          <h2 className='text-3xl font-bold text-center mb-8'>
+            On Sale
+          </h2>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6'>
+            {
+              salesList.map(sale => (
+                <UserProductTile
+                  handleGetProductDetails={handleGetProductDetails}
+                  product={sale}
+                  handleAddToCart={handleAddToCart}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      {/* shop by category */}
       <section className='py-12 bg-gray-50'>
         <div className='container mx-auto px-4'>
           <h2 className='text-3xl font-bold text-center mb-8'>
@@ -120,26 +165,6 @@ function UserHome() {
                   <span>{categoryItem.label}</span>
                 </CardContent>
               </Card>)
-            }
-          </div>
-        </div>
-      </section>
-      <section className='p-12'>
-        <div className='container mx-auto px-4'>
-          <h2 className='text-3xl font-bold text-center mb-8'>
-            Features
-          </h2>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6'>
-            {
-              productList && productList.length > 0 ?
-                productList.map(prodItem => (
-                  <UserProductTile
-                    handleGetProductDetails={handleGetProductDetails}
-                    product={prodItem}
-                    handleAddToCart={handleAddToCart}
-                  />
-                ))
-                : null
             }
           </div>
         </div>

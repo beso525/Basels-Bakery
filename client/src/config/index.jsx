@@ -91,6 +91,26 @@ export const addProductFormElements = [
     ],
   },
   {
+    label: "Dietary",
+    name: "dietary",
+    componentType: "multiselect",
+    options: [
+      { id: "none", label: "No Restrictions" },
+      { id: "gluten-free", label: "Gluten Free" },
+      { id: "nut-free", label: "Nut Free" },
+      { id: "dairy-free", label: "Dairy Free" },
+      { id: "vegan", label: "Vegan" },
+      { id: "lowsugar", label: "Low Sugar" },
+    ],
+  },
+  {
+    label: "Unit",
+    name: "unit",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., Per Loaf, Per Slice, or Per Dozen"
+  },
+  {
     label: "Price",
     name: "price",
     componentType: "input",

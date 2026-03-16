@@ -3,6 +3,7 @@ import { Label } from "../ui/label";
 import { SelectContent, Select, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 
 function AccountForms({ formControls, formData, setFormData, onSubmit, buttonText, isBtnDisabled }) {
 
@@ -71,6 +72,43 @@ function AccountForms({ formControls, formData, setFormData, onSubmit, buttonTex
         );
 
         break;
+
+      case 'multiselect':
+        element = (
+          <div className="flex flex-wrap gap-4 mt-2">
+            {getControlItem.options.map(item => (
+              <div key={item.id} className="flex items-center space-x-2">
+                <Checkbox
+                  id={item.id}
+                  checked={Array.isArray(value) && value.includes(item.id)}
+                  onCheckedChange={(checked) => {
+                    const currentValues = Array.isArray(value) ? value : [];
+                    let updatedValues;
+
+                    if (checked) {
+                      updatedValues = [...currentValues, item.id]
+                    } else {
+                      updatedValues = currentValues.filter(v => v !== item.id)
+                    }
+
+                    console.log("Current Array: ", updatedValues)
+                    setFormData({
+                      ...formData,
+                      [getControlItem.name]: updatedValues
+                    })
+                  }}
+
+                />
+                <Label htmlFor={item.id} className="text-sm font-medium cursor-pointer" >
+                  {item.label}
+                </Label>
+              </div>
+            ))}
+          </div>
+        );
+
+        break;
+
       default:
         element = (
           <Input

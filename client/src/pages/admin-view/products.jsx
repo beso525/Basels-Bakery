@@ -14,6 +14,8 @@ const initialFormData = {
   title: '',
   description: '',
   category: '',
+  dietary: [],
+  unit: '',
   price: "",
   salePrice: '',
   totalStock: '',
