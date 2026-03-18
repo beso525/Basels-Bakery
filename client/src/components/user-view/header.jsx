@@ -65,8 +65,6 @@ function DetailsHeader() {
     dispatch(getCart(user?.id))
   }, [dispatch, user]);
 
-  console.log(cartItems, "cart items");
-
   return <div className="flex lg:items-center lg:flex-row text-black flex-col gap-4">
     <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
       <Button variant="outline" className="cursor-pointer" size="icon" onClick={() => setOpenCartSheet(true)}>
@@ -127,15 +125,15 @@ function UserHeader() {
               <span className="sr-only">Toggle header</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-full max-w-xs p-6">
+          <SheetContent side="right" className="w-full max-w-xs p-6">
             <MenuItems />
             <DetailsHeader />
           </SheetContent>
         </Sheet>
-        <div className="sm:hidden">
+        <div className="hidden lg:block">
           <MenuItems />
         </div>
-        <div className="hidden lg:block xl:block">
+        <div className="hidden lg:block">
           <DetailsHeader />
         </div>
       </div>

@@ -4,7 +4,7 @@ import slideshowTwo from '../../assets/slideshow2.jpg'
 // import bannerThree from '../../assets/banner3.webp'
 import { ChevronLeft, ChevronRightIcon, Cookie, Cake, Croissant, Coffee, Pizza } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 import { displayFilteredProducts, displayProductDetails } from '@/store/shop/products-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import UserProductTile from '@/components/user-view/product-tile';
@@ -72,7 +72,7 @@ function UserHome() {
       })
   }
 
-  useEffect(() => {
+  useEffectEvent(() => {
     if (productDetails !== null) {
       setOpenDetailsDialog(true)
     }

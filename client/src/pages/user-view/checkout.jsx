@@ -110,7 +110,7 @@ function UserCheckout() {
             <Button
               onClick={handleInitialPaypalPayment}
               disabled={isCartEmpty}
-              className="w-full">
+              className="w-full cursor-pointer">
               {
                 isPaymentStart ? "Processing payment" : "Checkout with Paypal"
               }

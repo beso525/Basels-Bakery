@@ -5,7 +5,7 @@ import ProductDetailsDialog from "@/components/user-view/product-details";
 import UserProductTile from "@/components/user-view/product-tile";
 import { sortOptions } from "@/config";
 import { addToCart, getCart } from "@/store/shop/carts-slice";
-import { displayProductDetails, displayFilteredProducts } from "@/store/shop/products-slice";
+import { displayProductDetails, displayFilteredProducts, setProductDetails } from "@/store/shop/products-slice";
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -67,8 +67,8 @@ function UserListing() {
   }
 
   function handleGetProductDetails(getCurrentProductId) {
-    console.log(getCurrentProductId);
     dispatch(displayProductDetails(getCurrentProductId))
+    setOpenDetailsDialog(true)
   }
 
   function handleAddToCart(getCurrentProductId, getTotalStock) {
@@ -98,6 +98,10 @@ function UserListing() {
   }
 
   useEffect(() => {
+    dispatch(setProductDetails())
+  }, [dispatch])
+
+  useEffect(() => {
     setSort("price-lowhigh");
     setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
   }, [categorySearchParams])
@@ -107,7 +111,7 @@ function UserListing() {
       const createQueryString = createSearchParamsHelper(filters)
       setSearchParams(new URLSearchParams(createQueryString))
     }
-  }, [filters])
+  }, [filters, setSearchParams])
 
   useEffect(() => {
     if (filters !== null && sort !== null) {
@@ -115,14 +119,6 @@ function UserListing() {
     }
   }, [dispatch, sort, filters])
 
-  useEffect(() => {
-    if (productDetails !== null) {
-      setOpenDetailsDialog(true)
-    }
-  }, [productDetails])
-
-
-  console.log(productList, "product list");
 
   return <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
     <ProductFilter filters={filters} handleFilter={handleFilter} />

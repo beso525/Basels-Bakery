@@ -44,7 +44,6 @@ function Search() {
       userId: user?.id, productId: getCurrentProductId, quantity: 1
     }))
       .then((data) => {
-        console.log(data);
         if (data?.payload?.success) {
           dispatch(getCart(user?.id))
           toast.success("Item added to cart")
@@ -52,8 +51,9 @@ function Search() {
       })
   }
 
+  console.log(searchResults);
   useEffect(() => {
-    if (keyword && keyword.trim() !== '' && keyword.trim().length > 1) {
+    if (keyword && keyword.trim() !== '' && keyword.trim().length > 3) {
       setTimeout(() => {
         setSearchParams(new URLSearchParams(`?keyword=${keyword}`))
         dispatch(getSearchResults(keyword))
@@ -64,10 +64,7 @@ function Search() {
     }
   }, [keyword, dispatch, setSearchParams])
 
-  console.log(searchResults, "search results");
-
   function handleGetProductDetails(getCurrentProductId) {
-    console.log(getCurrentProductId);
     dispatch(displayProductDetails(getCurrentProductId))
   }
 
@@ -76,21 +73,29 @@ function Search() {
     <div className="container mx-auto md:px-6 px-4 py-8">
       <div className="flex justify-center mb-8">
         <div className="w-full flex items-center">
-          <Input value={keyword} name="keyword" onChange={(event) => setKeyword(event.target.value)} className="py-6" placeholder="Search products" />
+          <Input
+            value={keyword}
+            name="keyword"
+            onChange={(event) => setKeyword(event.target.value)}
+            className="py-6"
+            placeholder="Search products"
+          />
         </div>
       </div>
       {
-        !searchResults.length ?
+        !searchResults.length && keyword.length > 3 ?
           <h1 className="text-3xl font-bold">No results found</h1> :
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {
-              searchResults.map(item =>
-                <UserProductTile
-                  handleGetProductDetails={handleGetProductDetails}
-                  handleAddToCart={handleAddToCart}
-                  product={item} />)
-            }
-          </div>
+          keyword.length <= 3 ?
+            <h1 className="text-3xl font-bold">What are you craving?</h1> :
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+              {
+                searchResults.map(item =>
+                  <UserProductTile
+                    handleGetProductDetails={handleGetProductDetails}
+                    handleAddToCart={handleAddToCart}
+                    product={item} />)
+              }
+            </div>
       }
       <ProductDetailsDialog
         open={openDetailsDialog}

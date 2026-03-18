@@ -24,7 +24,7 @@ function UserOrders() {
   }
 
   useEffect(() => {
-    if (orderDetails !== null) setOpenDetailsDialog(false)
+    if (orderDetails !== null) setOpenDetailsDialog(true)
   }, [orderDetails])
 
   console.log(orderDetails, "order details")
@@ -54,11 +54,10 @@ function UserOrders() {
                     <TableCell>{orderItem?.orderDate.split('T')[0]}</TableCell>
                     <TableCell>
                       <Badge
-                        className=
-                        {`py-1 px-3
-                          ${orderDetails?.orderStatus ===
-                            "confirmed" ? "bg-green-500" :
-                            orderDetails?.orderStatus ===
+                        className={`py-1 px-3
+                          ${orderItem?.orderStatus ==
+                            "confirmed" ? "bg-green-500"
+                            : orderItem?.orderStatus ==
                               "rejected" ? "bg-red-500" :
                               "bg-black"}`
                         }>
@@ -81,7 +80,7 @@ function UserOrders() {
                   </>
                 )) :
                 <TableRow>
-                  <TableCell className="colspan-4">No orders yet!</TableCell>
+                  <TableCell colSpan={4}>No orders yet!</TableCell>
                 </TableRow>
             }
 

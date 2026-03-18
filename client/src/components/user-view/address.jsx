@@ -23,9 +23,11 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
   const { user } = useSelector(state => state.auth);
   const { addressList } = useSelector(state => state.shopAddress)
 
-  // how to exclude notes from this?
   function isFormValid() {
+    const notes = "notes";
+
     return Object.keys(formData)
+      .filter((key) => key !== notes)
       .map((key) => formData[key].trim() !== "")
       .every((item) => item);
   }

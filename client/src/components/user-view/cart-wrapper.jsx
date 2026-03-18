@@ -19,7 +19,7 @@ function CartWrapper({ cartItems, setOpenCartSheet }) {
     <SheetHeader>
       <SheetTitle>Your Cart</SheetTitle>
     </SheetHeader>
-    <div className="mt-8 space-y-4">
+    <div className="m-8 space-y-3">
       {
         cartItems && cartItems.length > 0 ?
           cartItems.map(item =>
@@ -27,8 +27,8 @@ function CartWrapper({ cartItems, setOpenCartSheet }) {
           : null
       }
     </div>
-    <div className="mt-8 space-y-4">
-      <div className="flex justify-between mx-6">
+    <div className="space-y-4 mx-8">
+      <div className="flex justify-between">
         <span className="font-bold">Total</span>
         <span className="font-bold">
           ${total.toFixed(2)}
@@ -38,7 +38,7 @@ function CartWrapper({ cartItems, setOpenCartSheet }) {
     <Button onClick={() => {
       setOpenCartSheet(false);
       navigate('/shop/checkout')
-    }} className="w-fill m-4">Checkout</Button>
+    }} className="w-fill m-5">Checkout</Button>
   </SheetContent >
 }
 
