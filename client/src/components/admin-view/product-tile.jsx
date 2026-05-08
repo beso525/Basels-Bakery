@@ -5,7 +5,7 @@ function AdminProductTile(
   { product, setCurrentEditedId, setOpenCreateProductsDialog, setFormData, handleDelete }
 ) {
   return (
-    <Card className="w-full max-w-sm mx-auto pt-0">
+    <Card className="w-full max-w-sm mx-auto pt-0 font-['noto-sans']">
       <div>
         <div className="relative">
           <img
@@ -14,8 +14,8 @@ function AdminProductTile(
             className="w-full h-[300px] object-cover rounded-t-lg"
           />
         </div>
-        <CardContent>
-          <h2 className="text-xl font-bold mb-2">
+        <CardContent >
+          <h2 className="text-xl sm:h-[3.5rem] line-clamp-3 font-bold mb-2">
             {product?.title}
           </h2>
           <div className="flex justify-between items-center mb-2">

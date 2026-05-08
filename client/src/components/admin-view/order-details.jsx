@@ -1,9 +1,9 @@
 import { useState } from "react";
-import AccountForms from "../common/account-form";
+import CommonForms from "../common/CommonForms";
 import { DialogContent, DialogTitle } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllOrdersForAdmin, getOrderDetailsForAdmin, updateOrderStatus } from "@/store/auth-slice/admin/order-slice";
 import { Badge } from "../ui/badge";
 import { toast } from "sonner";
@@ -15,7 +15,6 @@ const initialFormData = {
 function AdminOrderDetailsView({ orderDetails }) {
 
   const [formData, setFormData] = useState(initialFormData)
-  const { user } = useSelector(state => state.auth)
   const dispatch = useDispatch();
 
   function handleUpdateStatus(e) {
@@ -32,8 +31,6 @@ function AdminOrderDetailsView({ orderDetails }) {
         }
       })
   }
-
-  console.log(orderDetails);
 
   return (
     <DialogContent className="sm:max-w-[60vw] h-fill">
@@ -102,7 +99,7 @@ function AdminOrderDetailsView({ orderDetails }) {
             </div>
           </div>
           <div>
-            <AccountForms
+            <CommonForms
 
               formControls={[
                 {

@@ -49,12 +49,12 @@ function UserOrders() {
             {
               orderList && orderList.length > 0 ?
                 orderList.map(orderItem => (
-                  <><TableRow>
+                  <><TableRow className="font-[noto-sans] text-[18px] text-left">
                     <TableCell>{orderItem._id}</TableCell>
                     <TableCell>{orderItem?.orderDate.split('T')[0]}</TableCell>
                     <TableCell>
                       <Badge
-                        className={`py-1 px-3
+                        className={`py-1 px-3 tracking-wider
                           ${orderItem?.orderStatus ==
                             "confirmed" ? "bg-green-500"
                             : orderItem?.orderStatus ==

@@ -37,13 +37,13 @@ function App() {
   return (
     <div className='flex flex-col overflow-hidden bg-white'>
       <Routes>
-        <Route path="/auth" element={
+        <Route path="/" element={
           <CheckAuth isAuthenticated={isAuthenticated} user={user}>
             <AuthLayout />
           </CheckAuth>
         }>
-          <Route path="login" element={<AuthLogin />} />
-          <Route path="register" element={<AuthRegister />} />
+          <Route path="auth/login" element={<AuthLogin />} />
+          <Route path="auth/register" element={<AuthRegister />} />
         </Route>
 
         <Route path="/admin" element={

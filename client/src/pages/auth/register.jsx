@@ -1,4 +1,4 @@
-import AccountForms from "@/components/common/account-form";
+import CommonForms from "@/components/common/CommonForms";
 import { registerFormControls } from "@/config";
 import { registerUser } from "@/store/auth-slice";
 import { useState } from "react";
@@ -27,7 +27,7 @@ function AuthRegister() {
       } else {
         toast.error(data.payload.message)
       }
-      navigate("/auth/login")
+      navigate("/login")
     })
   }
 
@@ -38,13 +38,13 @@ function AuthRegister() {
         <p className="mt-2">Already have an account?
           <Link
             className="font-medium ml-2 text-primary hover:underline"
-            to='/auth/login'
+            to='/login'
           >
             Login!
           </Link>
         </p>
       </div>
-      <AccountForms
+      <CommonForms
         formControls={registerFormControls}
         buttonText={'Sign up'}
         formData={formData}

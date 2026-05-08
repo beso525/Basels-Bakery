@@ -1,6 +1,10 @@
 #root {
+  font-family: "Bungee", sans-serif;
+  font-style: normal;
+  font-weight: 400;
   margin: 0 auto;
   text-align: center;
+  background: black;
 }
 
 @keyframes logo-spin {

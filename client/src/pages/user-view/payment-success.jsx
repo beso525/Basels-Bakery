@@ -18,8 +18,6 @@ function PaymentSuccessPage() {
     dispatch(getOrderDetails(orderId));
   }, [dispatch, orderId])
 
-  console.log(orderDetails);
-
   return (
     <div className="flex flex-col gap-5 justify-center items-center my-10">
       <CircleCheckBig className="size-30 text-green-500" />
@@ -30,7 +28,7 @@ function PaymentSuccessPage() {
 
       <div>
         {
-          orderDetails ? <>
+          orderDetails && orderDetails.length ? <>
             <Card>
               <CardTitle className="font-extrabold text-4xl">
                 Order Details

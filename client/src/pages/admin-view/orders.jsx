@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog } from "@/components/ui/dialog";
 import { Table, TableRow, TableHead, TableHeader, TableBody, TableCell } from "@/components/ui/table";
 import { getAllOrdersForAdmin, getOrderDetailsForAdmin, resetOrderDetails } from "@/store/auth-slice/admin/order-slice";
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdminOrders() {
@@ -24,8 +24,12 @@ function AdminOrders() {
 
 
   useEffect(() => {
-    if (orderDetails !== null) setOpenDetailsDialog(true)
-  }, [orderDetails])
+    dispatch(getAllOrdersForAdmin());
+  }, [dispatch])
+
+  console.log(orderList);
+
+  const isDialogOpen = orderDetails !== null;
 
   return (
     <Card>
@@ -47,7 +51,7 @@ function AdminOrders() {
             {
               orderList && orderList.length > 0 ?
                 orderList.map(list => (
-                  <><TableRow>
+                  <><TableRow className="font-[noto-sans] text-lg">
                     <TableCell>{list._id}</TableCell>
                     <TableCell>{list.orderDate.split('T')[0]}</TableCell>
                     <TableCell>
@@ -69,7 +73,8 @@ function AdminOrders() {
                         onOpenChange={() => {
                           setOpenDetailsDialog(false)
                           dispatch(resetOrderDetails())
-                        }}>
+                        }}
+                        isOpen={isDialogOpen}>
                         <Button onClick={() => handleFetchOrderDetails(list?._id)}>View Details</Button>
                         <AdminOrderDetailsView orderDetails={orderDetails} />
                       </Dialog>

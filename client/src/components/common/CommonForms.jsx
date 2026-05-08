@@ -5,7 +5,7 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 
-function AccountForms({ formControls, formData, setFormData, onSubmit, buttonText, isBtnDisabled }) {
+function CommonForms({ formControls, formData, setFormData, onSubmit, buttonText, isBtnDisabled }) {
 
   function renderInput(getControlItem) {
     let element = null;
@@ -150,4 +150,4 @@ function AccountForms({ formControls, formData, setFormData, onSubmit, buttonTex
   );
 }
 
-export default AccountForms;
+export default CommonForms;

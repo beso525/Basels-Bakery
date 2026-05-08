@@ -1,4 +1,4 @@
-import AccountForms from "@/components/common/account-form";
+import CommonForms from "@/components/common/CommonForms";
 import { loginFormControls } from "@/config";
 import { loginUser } from "@/store/auth-slice";
 import { useState } from "react";
@@ -35,13 +35,13 @@ function AuthLogin() {
         <p className="mt-2">Don't have an account?
           <Link
             className="font-medium ml-2 text-primary hover:underline"
-            to='/auth/register'
+            to='/register'
           >
             Sign up!
           </Link>
         </p>
       </div>
-      <AccountForms
+      <CommonForms
         formControls={loginFormControls}
         buttonText={'Login'}
         formData={formData}

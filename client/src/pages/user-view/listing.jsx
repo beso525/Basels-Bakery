@@ -28,14 +28,11 @@ function UserListing() {
   const dispatch = useDispatch();
   const { productList, productDetails } = useSelector(state => state.shoppingProducts)
   const { user } = useSelector(state => state.auth)
-  const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState(null);
+  const [filters, setFilters] = useState(JSON.parse(sessionStorage.getItem("filters")) || {});
+  const [sort, setSort] = useState("price-lowhigh");
   const [searchParams, setSearchParams] = useSearchParams();
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const { cartItems } = useSelector(state => state.shoppingCart)
-
-  // i should learn more about this part and search parameters
-  const categorySearchParams = searchParams.get('category');
 
   function handleSort(value) {
     setSort(value);
@@ -84,7 +81,6 @@ function UserListing() {
         }
       }
     }
-
     dispatch(addToCart({
       userId: user?.id, productId: getCurrentProductId, quantity: 1
     }))
@@ -100,11 +96,6 @@ function UserListing() {
   useEffect(() => {
     dispatch(setProductDetails())
   }, [dispatch])
-
-  useEffect(() => {
-    setSort("price-lowhigh");
-    setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
-  }, [categorySearchParams])
 
   useEffect(() => {
     if (filters && Object.keys(filters).length > 0) {

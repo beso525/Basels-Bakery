@@ -1,4 +1,4 @@
-import { Search, ChefHat, LogOut, Menu, ShoppingCart, UserCog, SearchAlert } from "lucide-react";
+import { ChefHat, LogOut, ShoppingCart, UserCog, ChevronsDown } from "lucide-react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { SheetTrigger, Sheet, SheetContent } from "../ui/sheet";
 import { Button } from "../ui/button";
@@ -65,7 +65,7 @@ function DetailsHeader() {
     dispatch(getCart(user?.id))
   }, [dispatch, user]);
 
-  return <div className="flex lg:items-center lg:flex-row text-black flex-col gap-4">
+  return <div className="flex lg:items-center text-black text-lg flex-row gap-4">
     <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
       <Button variant="outline" className="cursor-pointer" size="icon" onClick={() => setOpenCartSheet(true)}>
         <ShoppingCart className="w-6 h-6" />
@@ -112,7 +112,7 @@ function UserHeader() {
   const isHomePage = location.pathname === "/shop/home";
 
   return (
-    <header className={`w-full z-50 text-[20px] ${isHomePage ? "text-white absolute top-0 bg-transparent" : "text-black relative bg-white"}`}>
+    <header className={`w-full z-50 text-[20px] ${isHomePage ? "text-white absolute rounded-b-4xl top-0 bg-black/50" : "text-black relative bg-white"}`}>
       <div className="flex h-20 items-center justify-between px-4 md:px-6">
         <Link className="flex items-center p-2 px-4 gap-2" to="/shop/home">
           <ChefHat className="h-7 w-7 " />
@@ -120,14 +120,18 @@ function UserHeader() {
         </Link>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="text-black lg:hidden">
-              <Menu className="h-6 w-6" />
+            <Button variant="none" className="text-white hover:scale-125 cursor-pointer lg:hidden">
+              <ChevronsDown className="size-[32px]" />
               <span className="sr-only">Toggle header</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full max-w-xs p-6">
+          <SheetContent side="right" className="w-full items-center max-w-xs p-6 flex flex-col ">
+            <Link className="flex justify-center p-2 px-4 w-full gap-2 border-b" to="/shop/home">
+              <ChefHat className="h-7 w-7 " />
+              <span className="font-bold">Whisk</span>
+            </Link>
             <MenuItems />
-            <DetailsHeader />
+            <DetailsHeader className="flex justify-center" />
           </SheetContent>
         </Sheet>
         <div className="hidden lg:block">

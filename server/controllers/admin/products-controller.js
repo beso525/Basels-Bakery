@@ -20,6 +20,31 @@ const handleImageUpload = async (req, res) => {
   }
 };
 
+const getFilteredProducts = async (req, res) => {
+  try {
+    const {category = []} = req.query;
+    
+    let filters = {};
+
+    if (category.length) {
+      filters.category = {$in: category.split(',')}
+    }
+    const products = await Product.find(filters);
+
+    res.status(200).json({
+      success: true,
+      data: products
+    })
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Error"
+    })
+  }
+}
+
+
 // add new product
 const addProduct = async (req, res) => {
   try {
@@ -142,4 +167,4 @@ const deleteProduct = async (req, res) => {
   }
 }
 
-module.exports = {handleImageUpload, addProduct, fetchProduct, editProduct, deleteProduct};
+module.exports = {handleImageUpload, getFilteredProducts, addProduct, fetchProduct, editProduct, deleteProduct};

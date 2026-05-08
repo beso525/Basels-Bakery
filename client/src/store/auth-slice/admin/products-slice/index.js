@@ -6,6 +6,18 @@ const initialState = {
   productList: []
 }
 
+export const displayFilteredProducts = createAsyncThunk('/products/displayFilteredProducts', 
+  async (filterParams) => {
+
+    console.log(filterParams)
+    const query = new URLSearchParams({
+      ...filterParams
+    })
+  const result = await api.get(
+    `/api/admin/products/get?${query}`);
+  return result?.data;
+})
+
 export const addNewProduct = createAsyncThunk('/products/addnewproduct', 
   async (formData) => {
   const result = await api.post(`/api/admin/products/add`, formData, {
@@ -52,6 +64,17 @@ const AdminProductsSlice = createSlice({
       state.productList = action.payload.data
     })
     .addCase(fetchProducts.rejected, (state) => {
+      state.isLoading = false,
+      state.productList = []
+    })
+    .addCase(displayFilteredProducts.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(displayFilteredProducts.fulfilled, (state, action) => {
+      state.isLoading = false,
+      state.productList = action.payload.data
+    })
+    .addCase(displayFilteredProducts.rejected, (state) => {
       state.isLoading = false,
       state.productList = []
     })

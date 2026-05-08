@@ -14,7 +14,7 @@ function AddressCard({ selectedId, addressInfo, handleDeleteAddress, handleEditA
         : "border-black"
         }`}
     >
-      <CardContent className="grid p-4 gap-5">
+      <CardContent className="flex flex-col p-4 gap-5 cursor-pointer">
         <Label><strong>Address:</strong> {addressInfo?.address}</Label>
         <Label><strong>City:</strong> {addressInfo?.city}</Label>
         <Label><strong>Postal Code:</strong> {addressInfo?.postalcode}</Label>
@@ -22,8 +22,8 @@ function AddressCard({ selectedId, addressInfo, handleDeleteAddress, handleEditA
         <Label><strong>Notes:</strong> {addressInfo?.notes}</Label>
       </CardContent>
       <CardFooter className="flex justify-between p-3">
-        <Button onClick={() => handleEditAddress(addressInfo)}>Edit</Button>
-        <Button onClick={() => handleDeleteAddress(addressInfo)}>Delete</Button>
+        <Button onClick={() => handleEditAddress(addressInfo)} className="cursor-pointer">Edit</Button>
+        <Button onClick={() => handleDeleteAddress(addressInfo)} className="cursor-pointer">Delete</Button>
       </CardFooter>
     </Card>
   )

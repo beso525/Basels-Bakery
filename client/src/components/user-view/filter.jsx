@@ -19,7 +19,7 @@ function ProductFilter({ filters, handleFilter }) {
                 <div className="grid gap-2 mt-2">
                   {
                     filterOptions[keyItem].map(option => (
-                      <Label className="flex font-medium items-center gap-2">
+                      <Label className="flex font-medium font-[noto-sans] items-center gap-2">
                         <Checkbox className="cursor-pointer"
                           checked={
                             filters &&

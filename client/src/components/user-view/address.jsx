@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AccountForms from "../common/account-form";
+import CommonForms from "../common/CommonForms";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { addressFormControls } from "@/config";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,10 +24,10 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
   const { addressList } = useSelector(state => state.shopAddress)
 
   function isFormValid() {
-    const notes = "notes";
+    const optional = "notes";
 
     return Object.keys(formData)
-      .filter((key) => key !== notes)
+      .filter((key) => key !== optional)
       .map((key) => formData[key].trim() !== "")
       .every((item) => item);
   }
@@ -98,7 +98,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
 
   return <Card>
     <div className="font-bold text-2xl">Address List</div>
-    <div className="mb-5 gap-5 p-3 grid grid-cols-1 sm:grid-cols-2">
+    <div className="mb-5 gap-5 p-3 grid font-[noto-sans] grid-cols-1 sm:grid-cols-2">
       {
         addressList && addressList.length > 0 ?
           addressList.map(address =>
@@ -122,7 +122,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       </CardTitle>
     </CardHeader>
     <CardContent className="space-y-4">
-      <AccountForms
+      <CommonForms
         formControls={addressFormControls}
         formData={formData}
         setFormData={setFormData}
