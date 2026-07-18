@@ -58,7 +58,7 @@ const loginUser = async(req, res) => {
         email: checkUser.email,
         username: checkUser.username,
       }, 
-      'CLIENT_SECRET_KEY', 
+      process.env.JWT_SECRET, 
       {expiresIn : '60mins'}
     );
 
@@ -103,7 +103,7 @@ const middleware = async(req, res, next) => {
   })
 
   try {
-    const decryptToken = jwt.verify(token, 'CLIENT_SECRET_KEY');
+    const decryptToken = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decryptToken;
     next();
   } catch (err) {
