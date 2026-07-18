@@ -112,7 +112,7 @@ function UserHeader() {
   const isHomePage = location.pathname === "/shop/home";
 
   return (
-    <header className={`w-full z-50 text-[20px] ${isHomePage ? "text-white absolute rounded-b-4xl top-0 bg-black/50" : "text-black relative bg-white"}`}>
+    <header className={`w-full z-50 text-[20px] ${isHomePage ? "text-white absolute rounded-b-4xl top-0 bg-amber-800/70" : "text-black relative bg-white"}`}>
       <div className="flex h-20 items-center justify-between px-4 md:px-6">
         <Link className="flex items-center p-2 px-4 gap-2" to="/shop/home">
           <ChefHat className="h-7 w-7 " />

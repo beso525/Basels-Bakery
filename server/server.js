@@ -16,16 +16,31 @@ const shopSearchRouter = require('./routes/shop/search-routes')
 dotenv.config();
 const app = express();
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("connected to db"))
-  .catch((error) => console.log(error));
+let isConnected = false;
 
-const PORT = process.env.PORT || 5000;
+async function connectDB() {
+  if (isConnected) return;
+  await mongoose.connect(process.env.MONGO_URI);
+  isConnected = true;
+  console.log("connected to db");
+}
+
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "DB connection failed"
+    })
+  }
+})
 
 app.use(
   cors({
-    origin: ["https://whiskbasel.netlify.app", "http://localhost:5173"],
+    origin: ["https://whiskbasel.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -50,5 +65,4 @@ app.use('/api/shop/address', shopAddressRouter)
 app.use('/api/shop/order', shopOrderRouter)
 app.use('/api/shop/search', shopSearchRouter)
 
-
-app.listen(PORT, () => console.log(`Server is now running on ${PORT}`));
+module.exports = app;
