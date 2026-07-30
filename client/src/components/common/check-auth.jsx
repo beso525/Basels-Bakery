@@ -6,38 +6,24 @@ function CheckAuth({ isAuthenticated, user, children }) {
   if (
     !isAuthenticated &&
     !(
-      location.pathname.includes('/login') ||
-      location.pathname.includes('/register') ||
-      location.pathname.includes('')
+      location.pathname.includes('/auth/login') ||
+      location.pathname.includes('/auth/register') ||
+      location.pathname.includes('/shop')
     )) {
     return <Navigate to='/auth/login' />;
   }
 
-  if (
-    isAuthenticated &&
-    (location.pathname.includes('/login') ||
-      location.pathname.includes('/register'))
-  ) {
-    if (user?.role === "admin") {
-      return <Navigate to="/admin/dashboard" />;
-    } else {
-      return <Navigate to="/shop/home" />;
-    }
+  if (isAuthenticated && (location.pathname.startsWith('/auth/login') || location.pathname.startsWith('/auth/register'))) {
+    return (user?.role === "admin")
+      ? <Navigate to="/admin/dashboard" />
+      : <Navigate to="/shop/home" />
   }
 
-  if (
-    isAuthenticated &&
-    user?.role !== "admin" &&
-    location.pathname.includes("admin")
-  ) {
+  if (isAuthenticated && user?.role !== "admin" && location.pathname.startsWith("/admin")) {
     return <Navigate to="/unauth" />;
   }
 
-  if (
-    isAuthenticated &&
-    user?.role === 'admin' &&
-    location.pathname.includes("shop")
-  ) {
+  if (isAuthenticated && user?.role === 'admin' && location.pathname.startsWith("/shop")) {
     return <Navigate to="/admin/dashboard" />;
   }
 

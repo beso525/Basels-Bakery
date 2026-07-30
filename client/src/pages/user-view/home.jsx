@@ -60,6 +60,10 @@ function UserHome() {
   }
 
   function handleAddToCart(getCurrentProductId) {
+    if (!user?.id) {
+      toast.error("Please log in to add items to cart.");
+      return;
+    }
     dispatch(addToCart({
       userId: user?.id, productId: getCurrentProductId, quantity: 1
     }))

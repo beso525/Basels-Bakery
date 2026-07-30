@@ -62,7 +62,9 @@ function DetailsHeader() {
   }
 
   useEffect(() => {
-    dispatch(getCart(user?.id))
+    if (user?.id) {
+      dispatch(getCart(user?.id))
+    }
   }, [dispatch, user]);
 
   return <div className="flex lg:items-center text-black text-lg flex-row gap-4">

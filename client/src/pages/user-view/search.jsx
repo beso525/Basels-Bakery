@@ -28,7 +28,10 @@ function Search() {
 
   function handleAddToCart(getCurrentProductId, getTotalStock) {
     let getCartItems = cartItems.items || [];
-
+    if (!user?.id) {
+      toast.error("Please log in to add items to cart.");
+      return;
+    }
     if (getCartItems.length) {
       const indexOfCurrentItem = getCartItems.findIndex(item => item.productId === getCurrentProductId)
       if (indexOfCurrentItem > -1) {

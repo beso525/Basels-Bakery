@@ -93,8 +93,18 @@ const logoutUser = (req, res) => {
   })
 }
 
-//auth middleware
+//is admin
+const isAdmin = (req, res, next) => {
+  if (req.user?.role !== 'admin') {
+    return res.status(403).json({
+      success: false,
+      message: 'Access denied: admin only'
+    });
+  }
+  next();
+}
 
+//auth middleware
 const middleware = async(req, res, next) => {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({
@@ -114,4 +124,4 @@ const middleware = async(req, res, next) => {
   }
 }
 
-module.exports = {registerUser, loginUser, logoutUser, middleware};
+module.exports = {registerUser, loginUser, logoutUser, middleware, isAdmin};

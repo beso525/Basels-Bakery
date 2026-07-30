@@ -21,6 +21,11 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   function handleAddToCart(getCurrentProductId, getTotalStock) {
     let getCartItems = cartItems.items || [];
 
+    if (!user?.id) {
+      toast.error("Please log in to add items to your cart");
+      return;
+    }
+
     if (getCartItems.length) {
       const indexOfCurrentItem = getCartItems.findIndex(item => item.productId === getCurrentProductId)
       if (indexOfCurrentItem > -1) {
@@ -36,7 +41,6 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
       userId: user?.id, productId: getCurrentProductId, quantity: 1
     }))
       .then((data) => {
-        console.log(data);
         if (data?.payload?.success) {
           dispatch(getCart(user?.id))
           toast.success("Item added to cart")
