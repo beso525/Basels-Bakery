@@ -54,7 +54,6 @@ function Search() {
       })
   }
 
-  console.log(searchResults);
   useEffect(() => {
     if (keyword && keyword.trim() !== '' && keyword.trim().length > 3) {
       setTimeout(() => {

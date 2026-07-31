@@ -24,7 +24,6 @@ function UserCheckout() {
       , 0)
     : 0;
 
-  console.log(currentSelectedAddress);
   function handleInitialPaypalPayment() {
 
     if (currentSelectedAddress === null) {
@@ -61,7 +60,6 @@ function UserCheckout() {
       }
 
       dispatch(createNewOrder(orderData)).then((data) => {
-        console.log(data, 'order data')
         if (data?.payload?.success) {
           setIsPaymentStart(true)
         } else {

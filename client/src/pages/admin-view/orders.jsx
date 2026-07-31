@@ -26,9 +26,6 @@ function AdminOrders() {
   useEffect(() => {
     dispatch(getAllOrdersForAdmin());
   }, [dispatch])
-
-  console.log(orderList);
-
   const isDialogOpen = orderDetails !== null;
 
   return (

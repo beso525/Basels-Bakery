@@ -44,7 +44,6 @@ const addToCart = async(req, res) => {
     })
 
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: 'add to cart server error'
@@ -55,7 +54,6 @@ const addToCart = async(req, res) => {
 const getCart = async(req, res) => {
   try {
     const {userId} = req.params;
-    console.log(req.params.data);
     if (!userId) {
       return res.status(404).json({
         success: false,
@@ -100,7 +98,6 @@ const getCart = async(req, res) => {
     })
 
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: 'get cart server error'
@@ -162,7 +159,6 @@ const updateCartQty = async(req, res) => {
     })
 
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: 'update cart server error'
@@ -218,7 +214,6 @@ const deleteCartItem = async(req, res) => {
     })
 
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: 'delete cart server error'

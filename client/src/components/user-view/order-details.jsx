@@ -5,10 +5,7 @@ import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
 
 function UserOrderDetailsView({ orderDetails }) {
-
   const { user } = useSelector(state => state.auth)
-  console.log(orderDetails, "order details");
-
   return (
     <DialogContent className="sm:max-w-[600px]">
       <DialogTitle>Order ID details</DialogTitle>

@@ -68,7 +68,6 @@ function UserHome() {
       userId: user?.id, productId: getCurrentProductId, quantity: 1
     }))
       .then((data) => {
-        console.log(data);
         if (data?.payload?.success) {
           dispatch(getCart(user?.id))
           toast.success("Item added to cart")

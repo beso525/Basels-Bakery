@@ -8,8 +8,6 @@ const initialState = {
 
 export const displayFilteredProducts = createAsyncThunk('/products/displayFilteredProducts', 
   async (filterParams) => {
-
-    console.log(filterParams)
     const query = new URLSearchParams({
       ...filterParams
     })

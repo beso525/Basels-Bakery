@@ -58,7 +58,6 @@ function UserListing() {
       }
 
     }
-    console.log(copiedFilters);
     setFilters(copiedFilters);
     sessionStorage.setItem("filters", JSON.stringify(copiedFilters));
   }
@@ -88,7 +87,6 @@ function UserListing() {
       userId: user?.id, productId: getCurrentProductId, quantity: 1
     }))
       .then((data) => {
-        console.log(data);
         if (data?.payload?.success) {
           dispatch(getCart(user?.id))
           toast.success("Item added to cart")

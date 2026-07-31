@@ -90,8 +90,6 @@ function CommonForms({ formControls, formData, setFormData, onSubmit, buttonText
                     } else {
                       updatedValues = currentValues.filter(v => v !== item.id)
                     }
-
-                    console.log("Current Array: ", updatedValues)
                     setFormData({
                       ...formData,
                       [getControlItem.name]: updatedValues

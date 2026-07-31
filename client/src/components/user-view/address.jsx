@@ -38,7 +38,6 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     if (addressList.length >= 3 && currentEditId === null) {
       toast.warning("You can only have up to 3 addresses at a time.")
       setFormData(initialAddressFormData);
-      console.log(addressList.length)
     } else {
       currentEditId !== null ?
         dispatch(editAddress({

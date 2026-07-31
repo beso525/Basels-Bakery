@@ -68,7 +68,6 @@ function AdminProducts() {
       }
 
     }
-    console.log(copiedFilters);
     setFilters(copiedFilters);
     sessionStorage.setItem("filters", JSON.stringify(copiedFilters));
   }
@@ -143,7 +142,6 @@ function AdminProducts() {
       dispatch(displayFilteredProducts({ filterParams: filters }));
     }
   }, [dispatch, filters])
-  console.log(formData, "product list");
 
   return (
     <Fragment>

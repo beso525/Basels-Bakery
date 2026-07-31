@@ -18,7 +18,6 @@ function CartContent({ cartItem }) {
     }))
   }
 
-  console.log(productList, "cart content")
   function handleUpdateQty(getCartItem, getAction) {
 
     if (getAction === "increase") {

@@ -22,7 +22,6 @@ async function connectDB() {
   if (isConnected) return;
   await mongoose.connect(process.env.MONGO_URI);
   isConnected = true;
-  console.log("connected to db");
 }
 
 app.use(async (req, res, next) => {
@@ -30,7 +29,6 @@ app.use(async (req, res, next) => {
     await connectDB();
     next();
   } catch (err) {
-    console.error(err);
     res.status(500).json({
       success: false,
       message: "DB connection failed"
@@ -66,6 +64,6 @@ app.use('/api/shop/order', shopOrderRouter)
 app.use('/api/shop/search', shopSearchRouter)
 if (require.main === module) {
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => console.log(`Server now running on ${PORT}`));
+  app.listen(PORT);
 }
 module.exports = app;

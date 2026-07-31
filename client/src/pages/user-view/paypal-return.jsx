@@ -16,7 +16,6 @@ function PaypalReturnPage() {
   useEffect(() => {
     if (paymentId && payerId) {
       const orderId = JSON.parse(sessionStorage.getItem('currentOrderId'))
-      console.log(orderId);
       dispatch(capturePayment({ paymentId, payerId, orderId })).then(data => {
         if (data?.payload?.success) {
           navigate('/shop/payment-success', { state: { orderId } });

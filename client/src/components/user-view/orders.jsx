@@ -26,9 +26,6 @@ function UserOrders() {
   useEffect(() => {
     if (orderDetails !== null) setOpenDetailsDialog(true)
   }, [orderDetails])
-
-  console.log(orderDetails, "order details")
-
   return (
     <Card>
       <CardHeader>

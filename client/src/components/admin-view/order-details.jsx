@@ -19,7 +19,6 @@ function AdminOrderDetailsView({ orderDetails }) {
 
   function handleUpdateStatus(e) {
     e.preventDefault();
-    console.log(formData)
     const { status } = formData;
     dispatch(updateOrderStatus({ id: orderDetails._id, orderStatus: status }))
       .then(data => {
