@@ -12,7 +12,6 @@ const handleImageUpload = async (req, res) => {
       result
     })
   } catch (err) {
-    console.log(err);
     res.json({
       success: false,
       message: "Error"
@@ -36,7 +35,6 @@ const getFilteredProducts = async (req, res) => {
       data: products
     })
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error"
@@ -70,7 +68,6 @@ const addProduct = async (req, res) => {
       data: newProduct
     })
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error"
@@ -87,7 +84,6 @@ const fetchProduct = async(req, res) => {
       data: getProducts
     })
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error"
@@ -134,7 +130,6 @@ const editProduct = async (req, res) => {
       data: findProduct
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error"
@@ -159,7 +154,6 @@ const deleteProduct = async (req, res) => {
       message: 'Product deleted.'
     })
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error"

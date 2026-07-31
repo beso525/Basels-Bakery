@@ -17,7 +17,6 @@ const getAllUsersOrders = async(req,res) => {
       data: orders
     })
   } catch(err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error occured!"
@@ -45,7 +44,6 @@ const getOrdersDetailsForAdmin = async(req,res) => {
       data: orders
     })
   } catch(err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error occured!"
@@ -74,7 +72,6 @@ const updateOrderStatus = async(req, res) => {
       message: 'Order status updated.'
     })
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: "Order not found"
